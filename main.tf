@@ -7,5 +7,12 @@ data "azuread_domains" "domains_lookup" {
   only_initial       = each.value.only_initial
   only_root          = each.value.only_root
   supports_services  = each.value.supports_services
+
+  dynamic "timeouts" {
+    for_each = each.value.timeouts != null ? [each.value.timeouts] : []
+    content {
+      read = timeouts.value.read
+    }
+  }
 }
 

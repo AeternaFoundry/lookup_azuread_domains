@@ -8,6 +8,8 @@ Optional:
     - only_initial
     - only_root
     - supports_services
+    - timeouts (block):
+        - read (optional)
 EOT
 
   type = map(object({
@@ -17,6 +19,9 @@ EOT
     only_initial       = optional(bool)
     only_root          = optional(bool)
     supports_services  = optional(list(string))
+    timeouts = optional(object({
+      read = optional(string)
+    }))
   }))
 }
 
